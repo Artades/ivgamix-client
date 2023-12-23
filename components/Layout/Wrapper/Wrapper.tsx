@@ -1,0 +1,15 @@
+import React, { FC, ReactNode } from 'react';
+
+interface WrapperProps {
+    children: ReactNode
+}
+
+const Wrapper:FC<WrapperProps> = ({children}) => {
+    return (
+        <div className='max-w-[1000px] mx-auto px-2'>
+            {children}
+        </div>
+    );
+};
+
+export default Wrapper;

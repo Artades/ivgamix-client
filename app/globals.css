@@ -50,7 +50,5 @@ html {
 		@apply bg-background text-foreground;
 	}
 
-	.container {
-		@apply max-w-[1240px]  mx-auto px-3;
-	}
+	
 }

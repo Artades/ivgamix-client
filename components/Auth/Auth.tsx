@@ -15,6 +15,7 @@ import { login } from "@/store/slices/authSlice";
 import { useRouter } from "next/navigation";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import Head from "next/head";
+import Logo from "../Layout/Header/Logo";
 
 type InputType = "password" | "text";
 
@@ -69,6 +70,7 @@ const Auth = () => {
 					style={{ backgroundImage: `url('/images/auth_image.jpg')` }}
 				></div>
 				<div className="relative z-10 flex h-screen items-center justify-center flex-col">
+					<Logo size={100}  withLabel={false}/>
 					<Typography label="Введите пароль" />
 					<div
 						className={`bg-transparent flex items-center justify-center px-3 md:px-5   md:max-w-[600px]  max-w-[350px] rounded-[0.5rem] bg-transparent border border-white  

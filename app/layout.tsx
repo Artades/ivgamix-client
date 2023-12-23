@@ -1,30 +1,42 @@
-"use client"
+
+
 import type { Metadata } from 'next'
 import './globals.css'
 import { OnestFont } from '@/utils/fonts'
-import { Provider } from 'react-redux'
-import store from '@/store'
+import { usePathname } from 'next/navigation'
+import Wrapper from '@/components/Layout/Wrapper/Wrapper'
+import StoreProvider from '@/components/Layout/StoreProvider'
+import Header from '@/components/Layout/Header/Header'
+import AppWrapper from '@/components/Layout/AppWrapper'
 
 
-// export const metadata: Metadata = {
-//   title: 'Ivgamix | Task Manager',
-//   description: 'The best solution for task magament.',
-// }
+
+export const metadata: Metadata = {
+  title: 'Ivgamix | Task Manager',
+  description: 'The best solution for task magament.',
+}
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+
+	
+
+	
+
   return (
-		<Provider store={store}>
-			<html lang="en">
-				<body className={OnestFont.className}>
-					{/* <Header /> */}
-					<div className="container">{children}</div>
-					{/* <Footer /> */}
-				</body>
-			</html>
-		 </Provider>
+		<>
+		
+			<StoreProvider>
+				<html lang="en">
+					<body className={OnestFont.className}>
+						<AppWrapper children={children} />
+						{/* <Footer /> */}
+					</body>
+				</html>
+			</StoreProvider>
+		</>
 	);
 }
