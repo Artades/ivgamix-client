@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import { Provider } from "react-redux";
 import store, { AppStore } from "@/store";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 export default function StoreProvider({
 	children,
@@ -14,5 +15,11 @@ export default function StoreProvider({
 		storeRef.current = store;
 	}
 
-	return <Provider store={storeRef.current}>{children}</Provider>;
+const queryClient = new QueryClient();
+
+	return (
+		<Provider store={storeRef.current}>
+			<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+		</Provider>
+	);
 }

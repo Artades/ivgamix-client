@@ -2,11 +2,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 type AuthInitialStateType = {
-	auth: "not authinticated" | "authinticated";
+	auth: "not authenticated" | "authenticated";
 };
 
 const initialState: AuthInitialStateType = {
-	auth: "not authinticated",
+	auth: "not authenticated",
 };
 
 const authSlice = createSlice({
@@ -14,10 +14,10 @@ const authSlice = createSlice({
 	initialState,
 	reducers: {
 		login: (state) => {
-			state.auth = "authinticated";
+			state.auth = "authenticated";
 		},
 		logout: (state) => {
-			state.auth = "not authinticated";
+			state.auth = "not authenticated";
 		},
 	},
 });

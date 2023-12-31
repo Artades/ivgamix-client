@@ -6,6 +6,7 @@ import NavItem from "./NavItem";
 import { usePathname } from "next/navigation";
 import CreateButton from "./CreateButton";
 import { cn } from "@/lib/utils";
+import { ActionsButton } from "./ActionsButton";
 
 const Header = () => {
 	const [scrollPosition, setScrollPosition] = useState(0);
@@ -37,21 +38,25 @@ const Header = () => {
 
 	return (
 		<header
-			className={`fixed top-0 left-0 right-0 w-full py-6 px-1 md:px-0 bg-black/50 backdroop-blur-md`}
+			className={`fixed top-0 left-0 right-0 w-full py-6 px-1 md:px-0 backdrop-blur-xl bg-black/40 z-[1000]`}
 		>
-			<div className="flex items-center justify-between max-w-[1000px] px-3 mx-auto ">
+			<div className="flex items-center justify-between max-w-[1000px] mx-auto px-2 md:px-0">
 				<div className="flex items-center gap-x-5">
 					<div
 						className={cn(
 							"bg-zinc-900 rounded-[0.5rem] p-2 transition-all duration-300 ease-out",
 							!showMenuIcon
-								? "md:translate-x-16 md:opacity-0 md:scale-0"
-								: "md:translate-x-0 md:opacity-1 md:scale-1"
+								? " md:translate-x-16 md:opacity-0 md:scale-0"
+								: " md:translate-x-0 md:opacity-1 md:scale-1"
 						)}
 					>
 						<RiMenu3Line className="text-white w-7 h-7" />
 					</div>
-					<div className="flex items-center gap-x-16">
+					<div
+						className={`flex items-center gap-x-16 ${
+							!showMenuIcon ? "md:-translate-x-16" : ""
+						}`}
+					>
 						<Logo withLabel size={50} />
 						<nav
 							className={`md:block hidden overflow-hidden transition-all duration-700 ease-out ${
@@ -75,7 +80,10 @@ const Header = () => {
 					</div>
 				</div>
 
-				<CreateButton />
+				<div className="flex items-center gap-x-3">
+					<CreateButton />
+					<ActionsButton />
+				</div>
 			</div>
 		</header>
 	);

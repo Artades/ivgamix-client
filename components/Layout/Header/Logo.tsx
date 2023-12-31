@@ -3,11 +3,12 @@ import Image from "next/image";
 
 interface LogoProps {
 	withLabel: boolean;
-    size: number
+    size: number;
+	className?: string;
 }
-const Logo: FC<LogoProps> = ({ withLabel, size }) => {
+const Logo: FC<LogoProps> = ({ withLabel, size, className }) => {
 	return (
-		<div className="flex space-x-1 items-center">
+		<div className={`flex space-x-1 items-center  ${className}`}>
 			<Image
 				width={size}
 				height={size}
@@ -17,7 +18,7 @@ const Logo: FC<LogoProps> = ({ withLabel, size }) => {
 				className="  cursor-pointer"
 			/>
 			{withLabel && (
-				<span className="text-xl text-white/90 font-bold">Ivgamix</span>
+				<span className={`text-xl text-white/90 font-bold`}>Ivgamix</span>
 			)}
 		</div>
 	);

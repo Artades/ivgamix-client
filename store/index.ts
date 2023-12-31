@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import authSlice from "./slices/authSlice";
+// import authSlice from "./slices/authSlice";
+import taskSlice from "./slices/taskSlice";
 
 
 const rootReducer = combineReducers({
-    auth: authSlice
+    // auth: authSlice,
+    tasks: taskSlice,
 })
 
 const store = configureStore({
@@ -12,5 +14,5 @@ const store = configureStore({
 
 
 export type RootState = ReturnType<typeof rootReducer>;
-export type AppStore = ReturnType<typeof store> 
+export type AppStore = typeof store; 
 export default store;

@@ -1,27 +1,40 @@
-'use client'
-import { selectAuthState } from '@/store/slices/authSlice';
-import Head from 'next/head';
+"use client";
+import Tasks from "@/components/Tasks/Tasks";
+import { useDispatch, useSelector } from "react-redux";
+import { useQuery } from "react-query";
+import { TaskItemProps } from "@/interfaces/task-item.interface";
+import { NextPage } from "next";
+import * as Api from "@/api";
+import {  setTasks } from "@/store/slices/taskSlice";
 
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import useAuthentication from "@/hooks/useAuthentication";
 
 
-export default function Home() {
-	const router = useRouter();
-	const authState = useSelector(selectAuthState);
-  useEffect(() => {
-		if (authState && authState === "not authinticated") {
-			router.push("/auth");
-		}
-    console.log(authState)
-	}, [authState]);
-  return (
+interface HomeProps {
+	tasks: TaskItemProps[] | undefined;
+}
+
+const Home = () => {
+
+	const dispatch = useDispatch();
+	// Use the custom authentication hook
+	useAuthentication();
+
+	const { data: fetchedTasks, isLoading } = useQuery("tasks", async () => {
+		return await Api.tasks.getAllTasks();
+	});
+
+	 
+	 
+	dispatch(setTasks(fetchedTasks));
+	
+
+	return (
 		<>
-		
-			{/* <div className="w-[500px] h-[500px]"></div>
-			<div className="w-[500px] h-[500px]"></div>
-			<div className="w-[500px] h-[500px]"></div> */}
+			<Tasks isLoading={isLoading} />
+			
 		</>
 	);
-}
+};
+
+export default Home;
