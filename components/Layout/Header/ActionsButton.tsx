@@ -1,6 +1,4 @@
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
 
 import {
 	Popover,
@@ -8,16 +6,15 @@ import {
 	PopoverTrigger,
 } from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
-import { burnAuthToken } from "@/utils/setAuthStatus";
+import { burnAccessToken } from "@/utils/handleAccessToken";
 import { useRouter } from "next/navigation";
 
 export function ActionsButton() {
 	const router = useRouter();
-    const handleLogout = () => {
-         burnAuthToken();
-		 router.push('/auth');
-		 
-    };
+	const handleLogout = () => {
+		burnAccessToken();
+		router.push("/auth");
+	};
 	return (
 		<Popover>
 			<PopoverTrigger asChild>
@@ -33,7 +30,9 @@ export function ActionsButton() {
 					</div>
 					<Separator className="w-full" />
 					<div className="cursor-pointer w-full justify-start flex items-center hover:text-primary rounded-t-[0.5rem]">
-						<span onClick={() => handleLogout()} className="text-sm">Log out</span>
+						<span onClick={() => handleLogout()} className="text-sm">
+							Log out
+						</span>
 					</div>
 				</div>
 			</PopoverContent>
